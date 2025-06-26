@@ -5,6 +5,7 @@ import httpx
 import json
 from datetime import datetime
 from config import config
+import os
 
 app = FastAPI(title="Schedule API", description="API to restructure and forward appointment data")
 
@@ -117,7 +118,8 @@ async def root():
         "endpoints": {
             "POST /restructure-appointment": "Restructure and forward appointment data"
         },
-        "external_api": config.EXTERNAL_API_URL
+        "external_api": config.EXTERNAL_API_URL,
+        "deployment": "Render"
     }
 
 @app.get("/health")
@@ -129,4 +131,6 @@ async def health_check():
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host=config.API_HOST, port=config.API_PORT) 
+    # Get port from environment variable (for Render) or use default
+    port = int(os.getenv("PORT", config.API_PORT))
+    uvicorn.run(app, host=config.API_HOST, port=port) 

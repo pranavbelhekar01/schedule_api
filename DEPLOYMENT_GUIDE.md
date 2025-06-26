@@ -38,12 +38,6 @@ Make sure your GitHub repository contains these files:
 - **Build Command**: `pip install -r requirements.txt`
 - **Start Command**: `uvicorn main:app --host 0.0.0.0 --port $PORT`
 
-#### Environment Variables (Optional):
-Add these if you need to customize:
-- `EXTERNAL_API_URL`: `https://test.lumeneo.ai/services/appointment/api/appointments`
-- `REQUEST_TIMEOUT`: `30`
-- `LOG_LEVEL`: `INFO`
-
 ### Step 5: Deploy
 1. Click "Create Web Service"
 2. Render will automatically:
@@ -94,10 +88,10 @@ curl -X POST "https://your-app-name.onrender.com/restructure-appointment" \
 - **Cold start**: First request after sleep may take 30-60 seconds
 - **Monthly hours**: Limited to 750 hours per month
 
-### Environment Variables:
-- `PORT`: Automatically set by Render (don't change)
-- `EXTERNAL_API_URL`: Your external API endpoint
-- `REQUEST_TIMEOUT`: HTTP request timeout in seconds
+### Configuration:
+- **External API URL**: Hardcoded to `https://test.lumeneo.ai/services/appointment/api/appointments`
+- **No Authentication**: External API doesn't require authentication
+- **PORT**: Automatically set by Render (don't change)
 
 ### Monitoring:
 - **Logs**: Available in Render dashboard
@@ -119,8 +113,8 @@ curl -X POST "https://your-app-name.onrender.com/restructure-appointment" \
    - Review application logs
 
 3. **External API Errors**:
-   - Verify `EXTERNAL_API_URL` is correct
-   - Check if external API is accessible
+   - Verify external API is accessible
+   - Check network connectivity
    - Review timeout settings
 
 ### Getting Help:

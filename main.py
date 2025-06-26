@@ -65,17 +65,11 @@ async def restructure_appointment(appointment_data: AppointmentInput):
             "work_order_id": appointment_data.work_order_id
         }
         
-        # Prepare headers for external API
+        # Prepare headers for external API (no authentication needed)
         headers = {
             "Content-Type": "application/json",
             "Accept": "application/json"
         }
-        
-        # Add authentication headers if configured
-        if config.EXTERNAL_API_KEY:
-            headers["X-API-Key"] = config.EXTERNAL_API_KEY
-        if config.EXTERNAL_API_SECRET:
-            headers["X-API-Secret"] = config.EXTERNAL_API_SECRET
         
         # Forward to external API
         async with httpx.AsyncClient() as client:
